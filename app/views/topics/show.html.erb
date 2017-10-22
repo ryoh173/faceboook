@@ -1,14 +1,19 @@
 <p id="notice"><%= notice %></p>
+  <div class="child row">
+    <div class="wrapper col-md-8 col-md-offset-2 col-sm-10">
+      <div class="topic-text">
+        <p class="left"><strong>タイトル</strong></p>
+        <p class="left"><%= @topic.title %></p>
+        <p class="left"><strong>内容</strong></p>
+        <p class="left"><%= @topic.content %></p>
+        <p class="right">
 
-<p>
-  <strong>Title:</strong>
-  <%= @topic.title %>
-</p>
 
-<p>
-  <strong>Content:</strong>
-  <%= @topic.content %>
-</p>
+        </p>
+      </div>
 
-<%= link_to 'Edit', edit_topic_path(@topic) %> |
-<%= link_to 'Back', topics_path %>
+      <%= link_to '編集', edit_topic_path(@topic) %> |
+      <%= link_to '戻る', topics_path %>
+
+    </div>
+  </div>
