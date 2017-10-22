@@ -14,7 +14,11 @@ class TopicsController < ApplicationController
 
   # GET /topics/new
   def new
-    @topic = Topic.new
+    if params[:back]
+      @topic = Topic.new(topics_params)
+    else
+      @topic = Topic.new
+    end
   end
 
   # GET /topics/1/edit
@@ -28,7 +32,7 @@ class TopicsController < ApplicationController
     @topic.user_id = current_user.id
     respond_to do |format|
       if @topic.save
-        format.html { redirect_to @topic, notice: 'トピックの投稿が完了しました' }
+        format.html { redirect_to topics_path, notice: 'トピックの投稿が完了しました' }
         format.json { render :show, status: :created, location: @topic }
         NoticeMailer.sendmail_topic(@topic).deliver
       else

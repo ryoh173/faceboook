@@ -15,6 +15,8 @@
         <%= f.text_field :name, class: "form-control" %>
       </div>
 
+    <% if @user.provider.blank? %>
+
       <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
         <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
       <% end %>
@@ -37,7 +39,14 @@
         <%= f.label :current_password %> <i>(現在のパスワードを入力してください)</i><br />
         <%= f.password_field :current_password, autocomplete: "off", class: "form-control", placeholder: "パスワード" %>
       </div>
+      
+    <% end %>
 
+      <div class="field">
+        <%= profile_img(@user) if profile_img(@user) %>
+        <%= f.file_field :avatar %>
+        <%= f.hidden_field :avatar_cache %>
+      </div>
       <div class="actions">
         <%= f.submit "更新", class: "btn btn-primary btn-block" %>
       </div>
@@ -46,5 +55,6 @@
     <p><%= button_to "アカウントを削除する", registration_path(resource_name), data: { confirm: "本当に削除しますか？" }, method: :delete %></p>
 
     <%= link_to "戻る", :back %>
+
   </div>
 </div>

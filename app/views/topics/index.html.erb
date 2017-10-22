@@ -9,7 +9,7 @@
           <h4><strong><%= topic.title %></strong></h4>
         <% end %>
           <p><%= topic.content %></p>
-          <p><%= topic.user.name %></p>
+          <p><%= profile_img(topic.user) %><%= topic.user.name %></p>
           <%= link_to '詳細', topic %>
           <br>
           <%= link_to '編集', edit_topic_path(topic), class: 'btn btn-sm btn-success' %>
