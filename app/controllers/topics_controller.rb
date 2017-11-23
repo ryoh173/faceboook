@@ -10,6 +10,8 @@ class TopicsController < ApplicationController
   # GET /topics/1
   # GET /topics/1.json
   def show
+    @comment = @topic.comments.build
+    @comments = @topic.comments
   end
 
   # GET /topics/new
@@ -21,12 +23,10 @@ class TopicsController < ApplicationController
     end
   end
 
-  # GET /topics/1/edit
   def edit
+
   end
 
-  # POST /topics
-  # POST /topics.json
   def create
     @topic = Topic.new(topic_params)
     @topic.user_id = current_user.id
@@ -42,8 +42,6 @@ class TopicsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /topics/1
-  # PATCH/PUT /topics/1.json
   def update
     respond_to do |format|
       if @topic.update(topic_params)
