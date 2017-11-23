@@ -1,9 +1,5 @@
 Rails.application.routes.draw do
 
-  get 'relationships/create'
-
-  get 'relationships/destroy'
-
   if Rails.env.development?
     mount LetterOpenerWeb::Engine, at: "/letter_opener"
   end
@@ -28,7 +24,11 @@ Rails.application.routes.draw do
   resources :users, only: [:index]
 
   resources :relationships, only: [:create, :destroy]
-  
+
+  resources :conversations do
+    resources :messages
+  end
+
   root 'top#index'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
